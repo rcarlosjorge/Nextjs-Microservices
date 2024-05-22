@@ -1,3 +1,5 @@
+import { Stringifiable } from "query-string";
+
 export type PagedResult<T> = {
   results: T[];
   pageCount: number;
@@ -21,4 +23,13 @@ export type Auction = {
   mileage: number;
   imageUrl: string;
   id: string;
+};
+
+export type Bid = {
+  id: string;
+  auctionId: String;
+  bidder: string;
+  bidTime: string;
+  amount: number;
+  bidStatus: string;
 };
