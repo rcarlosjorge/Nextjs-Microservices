@@ -29,7 +29,7 @@ export type Bid = {
   id: string;
   auctionId: String;
   bidder: string;
-  bidTime: string;
-  amount: number;
+  bidTime: string
+  amount: number
   bidStatus: string;
-};
+}
