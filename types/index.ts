@@ -27,7 +27,7 @@ export type Auction = {
 
 export type Bid = {
   id: string;
-  auctionId: String;
+  auctionId: string;
   bidder: string;
   bidTime: string
   amount: number
