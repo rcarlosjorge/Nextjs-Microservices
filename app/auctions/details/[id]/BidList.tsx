@@ -21,6 +21,8 @@ export default function BidList({ user, auction }: Props) {
   const [loading, setLoading] = useState(true);
   const bids = useBidStore((state) => state.bids);
   const setBids = useBidStore((state) => state.setBids);
+  const open = useBidStore((state) => state.open);
+  const setOpen = useBidStore((state) => state.setOpen);
   const openForBids = new Date(auction.auctionEnd) > new Date();
 
   const highBid = bids.reduce(
@@ -46,6 +48,10 @@ export default function BidList({ user, auction }: Props) {
       })
       .finally(() => setLoading(false));
   }, [auction.id, setLoading, setBids]);
+
+  useEffect(() => {
+    setOpen(openForBids);
+  }, [openForBids, setOpen]);
 
   if (loading) return <span>Loading bids...</span>;
 
