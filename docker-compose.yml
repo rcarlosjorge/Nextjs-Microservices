@@ -5,11 +5,14 @@ services:
       dockerfile: Dockerfile
     ports:
       - 3000:3000
+    extra_hosts:
+      - id.carsties.com:172.20.0.11
     environment:
       - NEXTAUTH_SECRET=somethingreallysecret
       - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_URL_INTERNAL=http://web-app:3000
       - API_URL=http://gateway-svc/
-      - ID_URL=http://identity-svc
+      - ID_URL=http://id.carsties.com
       - NEXT_PUBLIC_NOTIFY_URL=http://gateway-svc/notifications
     networks:
       - backend-network
