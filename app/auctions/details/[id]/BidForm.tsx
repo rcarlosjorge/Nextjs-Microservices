@@ -1,7 +1,7 @@
 "use client";
 import { placeBidForAuction } from "@/app/actions/auctionActions";
 import { useBidStore } from "@/hooks/useBidStore";
-import { numberWithCommas } from "@/lib/numberWithComma";
+import { numberWithCommas } from "@/app/lib/numberWithComma";
 import React from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import toast from "react-hot-toast";

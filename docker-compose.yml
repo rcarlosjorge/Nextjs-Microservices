@@ -1,0 +1,19 @@
+services:
+  web-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      - NEXTAUTH_SECRET=somethingreallysecret
+      - NEXTAUTH_URL=http://localhost:3000
+      - API_URL=http://gateway-svc/
+      - ID_URL=http://identity-svc
+      - NEXT_PUBLIC_NOTIFY_URL=http://gateway-svc/notifications
+    networks:
+      - backend-network
+
+networks:
+  backend-network:
+    external: true

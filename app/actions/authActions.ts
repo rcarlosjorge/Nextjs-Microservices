@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 import { getToken } from "next-auth/jwt";
 import { cookies, headers } from "next/headers";
 import { NextApiRequest } from "next";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/app/lib/auth";
 
 export async function getSession() {
   return await getServerSession(authOptions);

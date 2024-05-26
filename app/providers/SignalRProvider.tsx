@@ -22,12 +22,19 @@ export default function SignalRProvider({ children, user }: Props) {
   const addBid = useBidStore((state) => state.addBid);
 
   useEffect(() => {
-    const newConnection = new HubConnectionBuilder()
-      .withUrl(process.env.NEXT_PUBLIC_NOTIFY_URL!)
-      .withAutomaticReconnect()
-      .build();
+    const notifyUrl = process.env.NEXT_PUBLIC_NOTIFY_URL;
+    console.log(`Notify URL: ${notifyUrl}`); // Añadir log para verificar la URL
 
-    setConnection(newConnection);
+    if (notifyUrl) {
+      const newConnection = new HubConnectionBuilder()
+        .withUrl(notifyUrl)
+        .withAutomaticReconnect()
+        .build();
+
+      setConnection(newConnection);
+    } else {
+      console.error("NEXT_PUBLIC_NOTIFY_URL is not defined");
+    }
   }, []);
 
   useEffect(() => {
@@ -72,8 +79,7 @@ export default function SignalRProvider({ children, user }: Props) {
             }
           );
         })
-
-        .catch((error) => console.log(error));
+        .catch((error) => console.log("Error connecting to hub:", error));
     }
 
     return () => {
