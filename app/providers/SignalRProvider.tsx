@@ -23,8 +23,6 @@ export default function SignalRProvider({ children, user }: Props) {
 
   useEffect(() => {
     const notifyUrl = process.env.NEXT_PUBLIC_NOTIFY_URL;
-    console.log(`Notify URL: ${notifyUrl}`); // Añadir log para verificar la URL
-
     if (notifyUrl) {
       const newConnection = new HubConnectionBuilder()
         .withUrl(notifyUrl)
