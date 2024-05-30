@@ -20,20 +20,21 @@ export default function SignalRProvider({ children, user }: Props) {
   const [connection, setConnection] = useState<HubConnection | null>(null);
   const setCurrentPrice = useAuctionStore((state) => state.setCurrentPrice);
   const addBid = useBidStore((state) => state.addBid);
+  const apiUrl =
+    process.env.NODE_ENV === "production"
+      ? "https://api.carsties.com/notifications"
+      : process.env.NEXT_PUBLIC_NOTIFY_URL;
 
   useEffect(() => {
-    const notifyUrl = process.env.NEXT_PUBLIC_NOTIFY_URL;
-    if (notifyUrl) {
+    if (apiUrl) {
       const newConnection = new HubConnectionBuilder()
-        .withUrl(notifyUrl)
+        .withUrl(apiUrl!)
         .withAutomaticReconnect()
         .build();
 
       setConnection(newConnection);
-    } else {
-      console.error("NEXT_PUBLIC_NOTIFY_URL is not defined");
     }
-  }, []);
+  }, [apiUrl]);
 
   useEffect(() => {
     if (connection) {
